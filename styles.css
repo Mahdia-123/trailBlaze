@@ -4,10 +4,15 @@
     --color-main: #f5f2eb;
     --color-footer: #233f1f;
 }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 nav {
     display: flex;
@@ -75,7 +80,7 @@ nav .brand-name{
 }
 .hero h1{
     color: #FDF8EE;
-    font-size: 3.8rem;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
     margin-bottom: 1rem;
 }
 .hero p{
@@ -209,18 +214,15 @@ nav .brand-name{
         }
 
  .gallery-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 22px;
-    justify-content: center;
-    margin-top: 2.5rem;
-    }
+     display: grid;
+     grid-template-columns: repeat(4, minmax(0, 1fr));
+     gap: 22px;
+     margin-top: 2.5rem;
+     }
 
-.gallery-item {
-    flex: 1 1 180px;
-    max-width: 240px;
-    background: #E6D7B8;
-    border-radius: 28px;
+ .gallery-item {
+     background: #E6D7B8;
+     border-radius: 28px;
     overflow: hidden;
     border: 1px solid #C7BFA3;
     transition: 0.3s;
@@ -232,15 +234,12 @@ nav .brand-name{
     box-shadow: 0 14px 26px rgba(0,0,0,0.1);
     }
 
-.img-placeholder {
+.gallery-image {
+    display: block;
+    width: 100%;
     height: 160px;
-    background-size: cover;
+    object-fit: cover;
     }
-
- .img1 { background: linear-gradient(160deg, #3B5E2B, #567D3C); }
- .img2 { background: linear-gradient(160deg, #5C7A3E, #7A8B4A); }
- .img3 { background: linear-gradient(160deg, #4A5E2F, #6B7233); }
- .img4 { background: linear-gradient(160deg, #2F4F2E, #4C6B3A); }
 
  .gallery-caption {
      padding: 14px;
@@ -295,7 +294,131 @@ nav .brand-name{
 
         .footer-links a:hover { color: #C49A3C; }
 
-        @media (max-width: 700px) {
-            .nav { flex-direction: column; gap: 16px; }
-            .cards { flex-direction: column; align-items: center; }
-        }
+@media (max-width: 900px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cards {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    nav {
+        flex-direction: column;
+        gap: 16px;
+        padding: 18px 24px;
+    }
+
+    .links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px 20px;
+        margin-right: 0;
+    }
+
+    .hero {
+        padding: 70px 20px 75px;
+        border-bottom-left-radius: 36px;
+        border-bottom-right-radius: 36px;
+    }
+
+    .about-us,
+    .our-gallery {
+        padding: 56px 0;
+    }
+
+    .our-features {
+        padding: 48px 0 60px;
+    }
+
+    .cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .brand-2 {
+        padding: 36px 28px;
+        border-radius: 36px;
+    }
+
+    .start-your-journey {
+        padding: 64px 24px;
+        border-radius: 42px 42px 0 0;
+    }
+
+    .start-your-journey h2 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 18px;
+    }
+
+    nav {
+        padding: 16px 18px;
+    }
+
+    .links {
+        gap: 12px 16px;
+    }
+
+    .links .btn {
+        padding: 9px 18px;
+    }
+
+    .hero {
+        padding: 58px 18px 64px;
+    }
+
+    .hero p {
+        font-size: 1.05rem;
+    }
+
+    .hero-btn {
+        padding: 14px 32px;
+    }
+
+    .brand-2 {
+        padding: 30px 22px;
+    }
+
+    .brand-2 h2,
+    .our-features .container h2,
+    .our-gallery h2 {
+        font-size: 1.9rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 2rem;
+    }
+
+    .gallery-image {
+        height: 190px;
+    }
+
+    .start-your-journey h2 {
+        font-size: 1.9rem;
+    }
+
+    .footer {
+        justify-content: center;
+        gap: 16px;
+        padding: 24px 18px;
+        text-align: center;
+    }
+
+    .footer-links a {
+        margin: 0 8px;
+    }
+}
